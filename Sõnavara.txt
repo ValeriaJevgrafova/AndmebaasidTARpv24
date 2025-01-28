@@ -1,0 +1,17 @@
+andmebaas - AB
+andmebaaside hadus - адменестрирование баз данных
+andmebaasi haldussüsteem ABHS - система управления БЗ - СУБД (SQL Server/XAMPP /Oracle /MS Access)
+andmed -
+tabel
+veerg = väli
+rida = kirje - строчка = запись
+päring (query) - запрос
+loo
+laadi alla - скачать
+laadi üles - закачать
+rakendus - приложение
+varundamine - 
+taastamine - восстановление 
+päringukeel - язык запроса
+relatsiooni andmebaas -
+seos -
