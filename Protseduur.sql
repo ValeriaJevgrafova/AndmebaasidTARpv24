@@ -145,6 +145,40 @@ FROM linn;
 END;
 
 EXEC kokkuRahvaarv;
+----------------------------------------------------------------
+Protseduur viga
+use protseduurTARpv24
+CREATE TABLE moobel (
+SELECT * FROM moobel
+ALTER TABLE moobel ADD test int;
+ALTER TABLE moobel DROP COLUMN test;
+END;
+
+CREATE TABLE moobel ( 
+id INT AUTOINCREMENT PRIMARY KEY, 
+moobelNimetus varchar(100) NOT NULL, 
+hind decimal(10,2) NOT NULL, 
+vastutaja varchar(100) NOT NULL );
+SUM(hind) AS SummaarneHind FROM moobel; 
+END;
+
+CREATE PROCEDURE AddMoobel( 
+@moobelNimetus VARCHAR(100), 
+@hind DECIMAL(10,2),  
+@vastutaja VARCHAR(100) ) 
+BEGIN INSERT INTO moobel (moobelNimetus, hind, vastutaja) 
+VALUES (@moobelNimetus, @hind, @vastutaja); 
+END;
+
+CREATE PROCEDURE GetMoobelByPrice(IN min_price DECIMAL(10,2)) BEGIN 
+SELECT * FROM moobel WHERE hind > 100; 
+END;
+
+CALL AddMoobel('Diivan ', 500, 'Mugav diivan ', 'Jaan '); 
+CALL AddMoobel('Tool ', 150, 'Puidust tool ', 'Mari '); 
+CALL AddMoobel('Laud' , 300, 'Suur laud ', 'Peeter '); 
+CALL GetMoobelByPrice(200);
+END;
 ---------------------------------------------------------------
 kasutame XAMPP / localhost
 
