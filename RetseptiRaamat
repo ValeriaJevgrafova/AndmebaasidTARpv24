@@ -1,1 +1,58 @@
+Create database retseptiRaamatValeria;
+use retseptiRaamatValeria;
+Create table kasutaja(
+kasutaja_id int primary key identity(1,1),
+eesnimi varchar(50),
+perenimi varchar(50) not null,
+email varchar(150));
+Insert into kasutaja(eesnimi, perenimi, email)
+Values ('Nikita', 'Nikita', 'nikita@tthk.ee'),
+('Mark', 'Mark', 'mark@tthk.ee'),
+('Roman', 'Roman', 'roman@tthk.ee'),
+('Marija', 'Marija', 'marija@tthk.ee'),
+('Niki', 'Niki', 'niki@tthk.ee'),
 
+SELECT * FROM Kasutaja;
+
+CREATE TABLE Kategooria(
+kategootia_id int primary key identity(1,1),
+kategootia_nimi varchar(50));
+INSERT INTO kategooria(kategooria_nimi)
+VALUES ('supp'), ('grill'), ('köök');
+
+SELECT * FROM kategooria;
+SELECT * FROM Kasutaja;
+
+CREATE TABLE Toiduaine(
+toiduaine_id int primary key identity(1,1),
+toiduaine_nimi varchar(100))
+insert into Toiduaine(toiduaine_nimi)
+values('munad'). ('juust'), ('õlu'), ('vorst')
+
+SELECT * FROM Toiduaine 
+
+CREATE TABLE yhik(
+yhik_id INT PRIMARY KEY IDENTITY(1,1),
+yhik_nimi varchar(100))
+
+INSERT INTO yhik(yhik_nimi)
+VALUES('ml'), ('g'), ('kg'), (tl), ('sl')
+
+SELECT * FROM yhik
+
+CREATE TABLE retsept(
+retsept_id INT PRIMARY KEY IDENTITY(1,1),
+retsepti_nimi varchar(100)),
+kirjeldus varchar(200),
+juhend varchar(500),
+sisestatud_kp date,
+kasutaja_id int,
+foreign key (kasutaja_id) references kasutaja(kasutaja_id),
+kategooria_id int,
+foreign key (kategooria_id) references kategooria(kategooria_id),
+INSERT INTO retsept(
+retsepti_nimi, kirjeldus, juhend, sisestatud_kp, kasutaja_id, kategooria_id)
+VALUES ('Porgandiköök', 'väga magus', 'Kasuta porgandid', '2007-10-17', 2, 2);
+('Pasta', 'Keeta makaroonid', 'Kasuta elekripliit', '2025-6-17', 3, 3);
+
+SELECT * FROM retsept;
