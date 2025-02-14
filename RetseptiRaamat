@@ -56,3 +56,15 @@ VALUES ('Porgandiköök', 'väga magus', 'Kasuta porgandid', '2007-10-17', 2, 2)
 ('Pasta', 'Keeta makaroonid', 'Kasuta elekripliit', '2025-6-17', 3, 3);
 
 SELECT * FROM retsept;
+---------------------------------------------------------------------------------------
+
+CREATE TABLE toiduaine_hind(
+hind_id int primary key,
+toiduaine_id int,
+hind decimal(5,2) default 'EUR',
+foreign key (toiduaine_id) references toiduaine(toiduaine_id));
+
+INSERT INTO toiduaine_hind (toiduaine_id, hind)
+VALUES (1, 2.50, 'EUR'), (2, 1.20, 'EUR'), (3, 3.75, 'EUR'), (4, 0.90, 'EUR');
+
+SELECT * FROM toiduaine_hind;
