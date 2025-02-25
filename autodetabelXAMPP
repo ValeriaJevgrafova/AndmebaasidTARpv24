@@ -1,0 +1,59 @@
+CREATE TABLE autode_tabel (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    mark VARCHAR(50),
+    regnr VARCHAR(20),
+    aasta INT,
+    regpiirkond INT
+);
+
+INSERT INTO autode_tabel (mark, regnr, aasta, regpiirkond)
+VALUES 
+    ('Audi', '123 ABC', 2000, 1),
+    ('Ford', '777 AAA', 1988, 2),
+    ('Ford', 'FIN 772', 2002, 1),
+    ('Nissan', '111 CCC', 2006, 1),
+    ('Toyota', '128 HGF', 2003, 1),
+    ('VAZ', '544 CCH', 1960, 2);
+
+SELECT * FROM autode_tabel
+ORDER BY aasta DESC;
+
+SELECT mark, COUNT(*) 
+FROM autode_tabel
+GROUP BY mark
+HAVING COUNT(*) > 0;
+
+SELECT regnr
+FROM autode_tabel
+WHERE aasta < 1993;
+
+SELECT regnr
+FROM autode_tabel
+WHERE aasta < 1993
+ORDER BY regnr;
+
+SELECT MIN(aasta) AS varasem_väljalaskeaasta
+FROM autode_tabel;
+
+UPDATE autode_tabel
+SET regnr = '333 KKK'
+WHERE id = 3;
+
+UPDATE autode_tabel
+SET regnr = '333 KKK'
+WHERE id = 3;
+
+INSERT INTO autode_tabel (mark, regnr, aasta, regpiirkond) 
+VALUES ('Nissan', '555 NNN', 2007, 2);
+
+SELECT * 
+FROM autode_tabel
+WHERE regpiirkond = 1;
+
+SELECT * 
+FROM autode_tabel
+WHERE mark = 'Ford';
+
+SELECT * 
+FROM autode_tabel
+WHERE aasta > 2000 AND regpiirkond = 2;
