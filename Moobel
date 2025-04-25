@@ -1,0 +1,57 @@
+Create database Moobel;
+Use Moobel;
+CREATE TABLE moobel (
+    id INT IDENTITY(1,1) PRIMARY KEY,  
+    moobelNimetus VARCHAR(255),
+    hind DECIMAL(10, 2),
+    kirjeldus TEXT,
+    vastutaja VARCHAR(255)
+);
+
+INSERT INTO moobel (moobelNimetus, hind, kirjeldus, vastutaja)
+VALUES ('Diivan', 500.00, 'Mugav diivan', 'Jaan'),
+('Tool', 150.00, 'Puidust tool', 'Mari'),
+('Laud', 300.00, 'Suur laud', 'Peeter'),
+('Kummut', 400.00, 'Tamme täispuidust kummut', 'Kalev'),
+('Voodi', 650.00, 'Kaheinimesevoodi koos madratsiga', 'Siim'),
+('Riiul', 180.00, 'Metallist riiul raamatutele', 'Anu');
+
+Select * from moobel;
+
+CREATE PROCEDURE GetAvgAndTotalPrice
+AS
+BEGIN
+    SELECT 
+        AVG(hind) AS avgPrice, 
+        SUM(hind) AS totalPrice
+    FROM moobel;
+END;
+
+EXEC GetAvgAndTotalPrice;
+
+CREATE PROCEDURE AddNewFurniture
+    @moobelNimetus VARCHAR(255),
+    @hind DECIMAL(10,2),
+    @kirjeldus TEXT,
+    @vastutaja VARCHAR(255)
+AS
+BEGIN
+    INSERT INTO moobel (moobelNimetus, hind, kirjeldus, vastutaja)
+    VALUES (@moobelNimetus, @hind, @kirjeldus, @vastutaja);
+END;
+
+EXEC AddNewFurniture 
+    @moobelNimetus = 'Kapike', 
+    @hind = 220.00, 
+    @kirjeldus = 'Valge kapp', 
+    @vastutaja = 'Kristiina';
+
+CREATE PROCEDURE GetFurnitureByPrice
+@hind DECIMAL(10,2)
+AS
+BEGIN
+    SELECT * FROM moobel
+    WHERE hind > @hind;
+END;
+
+EXEC GetFurnitureByPrice @hind = 200.00;
