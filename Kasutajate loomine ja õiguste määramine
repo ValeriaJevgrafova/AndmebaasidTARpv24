@@ -1,0 +1,30 @@
+XAMPP
+CREATE DATABASE Loomad;
+USE Loomad;
+CREATE TABLE Linnad (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nimetus VARCHAR(50),
+    keskKaal DECIMAL(10, 2),
+    riik VARCHAR(50),
+    tiibadeSuurus DECIMAL(10, 2)
+);
+CREATE USER 'proNimi'@'localhost' IDENTIFIED BY '1234';
+GRANT SELECT, INSERT ON Loomad.Linnad TO 'proNimi'@'localhost';
+REVOKE UPDATE, ALTER ON Loomad.Linnad FROM 'proNimi'@'localhost';
+
+SQL
+create database Loomad
+use Loomad;
+
+CREATE TABLE Linnad (
+    id INT PRIMARY KEY IDENTITY(1,1),
+    nimetus VARCHAR(50),
+    keskKaal DECIMAL,
+    riik VARCHAR(50),
+    tiibadeSuurus DECIMAL
+);
+CREATE LOGIN proNimi WITH PASSWORD = '1234';
+CREATE USER proNimi FOR LOGIN proNimi;
+GRANT SELECT, INSERT ON dbo.Linnad TO proNimi;
+DENY UPDATE ON dbo.Linnad TO proNimi;
+DENY ALTER ON dbo.Linnad TO proNimi;
